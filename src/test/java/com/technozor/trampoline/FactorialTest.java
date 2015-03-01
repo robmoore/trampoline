@@ -53,11 +53,11 @@ public class FactorialTest {
      // Not recursive but functional and does not result in stack overflow
     @Test()
     public void testReducedFactorial() {
-        BigInteger safe = IntStream.rangeClosed(1, N)
+        BigInteger result = IntStream.rangeClosed(1, N)
                 .boxed()
                 .map(BigInteger::valueOf)
                 .reduce(BigInteger::multiply)
                 .get();
-        assertTrue(safe != null);
+        assertEquals(trampoline(safeGo(N, BigInteger.ONE)), result);
     }
 }

@@ -49,5 +49,15 @@ public class FactorialTest {
 
         assertTrue(safe instanceof BigInteger);
     }
-
+    
+     // Not recursive but functional and does not result in stack overflow
+    @Test()
+    public void testReducedFactorial() {
+        BigInteger safe = IntStream.rangeClosed(1, N)
+                .boxed()
+                .map(BigInteger::valueOf)
+                .reduce(BigInteger::multiply)
+                .get();
+        assertTrue(safe != null);
+    }
 }
